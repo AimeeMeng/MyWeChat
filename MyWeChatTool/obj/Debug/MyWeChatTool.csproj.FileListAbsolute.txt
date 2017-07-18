@@ -1,0 +1,10 @@
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\bin\Debug\MyWeChatTool.exe.config
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\bin\Debug\MyWeChatTool.exe
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\bin\Debug\MyWeChatTool.pdb
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.csprojResolveAssemblyReference.cache
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.Main.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.Properties.Resources.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.csproj.GenerateResource.Cache
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.exe
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.pdb
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.CreateMenu.resources
