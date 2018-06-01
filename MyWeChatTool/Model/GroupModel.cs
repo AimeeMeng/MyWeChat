@@ -53,4 +53,50 @@ namespace MyWeChatTool.Model
         public string[] openid_list;
         public string to_groupid;
     }
+
+    /// <summary>
+    /// 获取标签模型
+    /// </summary>
+    public class tags
+    {
+        public string id{ get; set; }
+        public string name{ get; set; }
+        public int count{ get; set; }
+    }
+
+    public class WeTag
+    {
+        public tags[] tags;
+    }
+
+    /// <summary>
+    /// 创建标签模型
+    /// </summary>
+    public class tag
+    {
+        public string id
+        {
+            get;
+            set;
+        }
+        public string name
+        {
+            get;
+            set;
+        }
+    }
+
+    public class Tag
+    {
+        public tag tag;
+    }
+
+    public class MoveTagList
+    {
+        public string[] openid_list;
+        public string tagid;
+    }
+    public class TagList {
+        public string[] tagid_list;
+    }
 }

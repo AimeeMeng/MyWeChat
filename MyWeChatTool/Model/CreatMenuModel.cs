@@ -72,7 +72,7 @@ namespace MyWeChatTool.Model
 
     public class WeChatUserMenu : WeChatMenuCreat
     {
-        public matchruleCreat matchruleCreat
+        public matchruleCreat matchrule
         {
             get;
             set;
@@ -81,7 +81,12 @@ namespace MyWeChatTool.Model
 
     public class matchruleCreat
     {
-        public string group_id
+        //public string group_id
+        //{
+        //    get;
+        //    set;
+        //}
+        public string tag_id
         {
             get;
             set;

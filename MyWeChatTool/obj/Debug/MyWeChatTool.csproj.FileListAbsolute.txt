@@ -8,3 +8,9 @@ E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.csproj.GenerateResour
 E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.exe
 E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.pdb
 E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.CreateMenu.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.test.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.CreateMenuNew.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.CreateTagsNew.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.MenuForm.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.TagForm.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.UserForm.resources

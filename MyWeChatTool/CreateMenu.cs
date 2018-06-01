@@ -245,8 +245,8 @@ namespace MyWeChatTool
                 WeChatUserMenu WeChatUserMenu = new WeChatUserMenu();
                 matchruleCreat matchrule = new matchruleCreat();
                 //matchrule.group_id = textBox4.Text;
-                matchrule.group_id = comboBoxGroup.SelectedValue.ToString();
-                WeChatUserMenu.matchruleCreat = matchrule;
+                //matchrule.group_id = comboBoxGroup.SelectedValue.ToString();
+                WeChatUserMenu.matchrule = matchrule;
                 WeChatUserMenu.button = weChatMenu.button;
                 string stuJsonString = Newtonsoft.Json.JsonConvert.SerializeObject(WeChatUserMenu);
                 MessageBox.Show(ToolManager.CreateUserMenu(stuJsonString));

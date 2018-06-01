@@ -1,0 +1,3 @@
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\bin\Debug\MyWeChatTool.exe.config
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.exe
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.pdb

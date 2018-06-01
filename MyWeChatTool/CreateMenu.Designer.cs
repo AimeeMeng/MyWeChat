@@ -34,12 +34,17 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxMenuStyle = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxGroup = new System.Windows.Forms.ComboBox();
             this.buttonCreate = new System.Windows.Forms.Button();
+            this.comboBoxGroup = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBoxMenuStyle = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBoxMenuName = new System.Windows.Forms.TextBox();
+            this.buttonDel = new System.Windows.Forms.Button();
+            this.buttonAddTwoMenu = new System.Windows.Forms.Button();
+            this.buttonAddOneMenu = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.buttonYes = new System.Windows.Forms.Button();
             this.textBoxURL = new System.Windows.Forms.TextBox();
@@ -48,11 +53,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxMenuKey = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.buttonDel = new System.Windows.Forms.Button();
-            this.buttonAddTwoMenu = new System.Windows.Forms.Button();
-            this.buttonAddOneMenu = new System.Windows.Forms.Button();
-            this.textBoxMenuName = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -72,6 +72,7 @@
             // 
             // treeViewMenu
             // 
+            this.treeViewMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.treeViewMenu.Location = new System.Drawing.Point(15, 20);
             this.treeViewMenu.Name = "treeViewMenu";
             this.treeViewMenu.Size = new System.Drawing.Size(199, 282);
@@ -112,14 +113,32 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "创建菜单";
             // 
-            // label1
+            // buttonCreate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "创建类型：";
+            this.buttonCreate.Location = new System.Drawing.Point(458, 23);
+            this.buttonCreate.Name = "buttonCreate";
+            this.buttonCreate.Size = new System.Drawing.Size(75, 23);
+            this.buttonCreate.TabIndex = 4;
+            this.buttonCreate.Text = "创建菜单";
+            this.buttonCreate.UseVisualStyleBackColor = true;
+            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
+            // 
+            // comboBoxGroup
+            // 
+            this.comboBoxGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxGroup.Location = new System.Drawing.Point(299, 25);
+            this.comboBoxGroup.Name = "comboBoxGroup";
+            this.comboBoxGroup.Size = new System.Drawing.Size(121, 20);
+            this.comboBoxGroup.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(233, 28);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "分组名称：";
             // 
             // comboBoxMenuStyle
             // 
@@ -134,32 +153,14 @@
             this.comboBoxMenuStyle.TabIndex = 1;
             this.comboBoxMenuStyle.SelectedIndexChanged += new System.EventHandler(this.comboBoxMenuStyle_SelectedIndexChanged);
             // 
-            // label2
+            // label1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(233, 28);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 12);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "分组名称：";
-            // 
-            // comboBoxGroup
-            // 
-            this.comboBoxGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxGroup.Location = new System.Drawing.Point(299, 25);
-            this.comboBoxGroup.Name = "comboBoxGroup";
-            this.comboBoxGroup.Size = new System.Drawing.Size(121, 20);
-            this.comboBoxGroup.TabIndex = 3;
-            // 
-            // buttonCreate
-            // 
-            this.buttonCreate.Location = new System.Drawing.Point(458, 23);
-            this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(75, 23);
-            this.buttonCreate.TabIndex = 4;
-            this.buttonCreate.Text = "创建菜单";
-            this.buttonCreate.UseVisualStyleBackColor = true;
-            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "创建类型：";
             // 
             // groupBox3
             // 
@@ -174,6 +175,52 @@
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "添加各级菜单";
+            // 
+            // textBoxMenuName
+            // 
+            this.textBoxMenuName.Location = new System.Drawing.Point(94, 17);
+            this.textBoxMenuName.Name = "textBoxMenuName";
+            this.textBoxMenuName.Size = new System.Drawing.Size(159, 21);
+            this.textBoxMenuName.TabIndex = 29;
+            // 
+            // buttonDel
+            // 
+            this.buttonDel.Location = new System.Drawing.Point(207, 54);
+            this.buttonDel.Name = "buttonDel";
+            this.buttonDel.Size = new System.Drawing.Size(93, 23);
+            this.buttonDel.TabIndex = 28;
+            this.buttonDel.Text = "删除";
+            this.buttonDel.UseVisualStyleBackColor = true;
+            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
+            // 
+            // buttonAddTwoMenu
+            // 
+            this.buttonAddTwoMenu.Location = new System.Drawing.Point(108, 54);
+            this.buttonAddTwoMenu.Name = "buttonAddTwoMenu";
+            this.buttonAddTwoMenu.Size = new System.Drawing.Size(93, 23);
+            this.buttonAddTwoMenu.TabIndex = 27;
+            this.buttonAddTwoMenu.Text = "添加二级菜单";
+            this.buttonAddTwoMenu.UseVisualStyleBackColor = true;
+            this.buttonAddTwoMenu.Click += new System.EventHandler(this.buttonAddTwoMenu_Click);
+            // 
+            // buttonAddOneMenu
+            // 
+            this.buttonAddOneMenu.Location = new System.Drawing.Point(11, 54);
+            this.buttonAddOneMenu.Name = "buttonAddOneMenu";
+            this.buttonAddOneMenu.Size = new System.Drawing.Size(91, 23);
+            this.buttonAddOneMenu.TabIndex = 26;
+            this.buttonAddOneMenu.Text = "添加一级菜单";
+            this.buttonAddOneMenu.UseVisualStyleBackColor = true;
+            this.buttonAddOneMenu.Click += new System.EventHandler(this.buttonAddOneMenu_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(23, 20);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 12);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "菜单名称：";
             // 
             // groupBox4
             // 
@@ -260,52 +307,6 @@
             this.label5.Size = new System.Drawing.Size(59, 12);
             this.label5.TabIndex = 25;
             this.label5.Text = "菜单Key：";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 20);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 12);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "菜单名称：";
-            // 
-            // buttonDel
-            // 
-            this.buttonDel.Location = new System.Drawing.Point(207, 54);
-            this.buttonDel.Name = "buttonDel";
-            this.buttonDel.Size = new System.Drawing.Size(93, 23);
-            this.buttonDel.TabIndex = 28;
-            this.buttonDel.Text = "删除";
-            this.buttonDel.UseVisualStyleBackColor = true;
-            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
-            // 
-            // buttonAddTwoMenu
-            // 
-            this.buttonAddTwoMenu.Location = new System.Drawing.Point(108, 54);
-            this.buttonAddTwoMenu.Name = "buttonAddTwoMenu";
-            this.buttonAddTwoMenu.Size = new System.Drawing.Size(93, 23);
-            this.buttonAddTwoMenu.TabIndex = 27;
-            this.buttonAddTwoMenu.Text = "添加二级菜单";
-            this.buttonAddTwoMenu.UseVisualStyleBackColor = true;
-            this.buttonAddTwoMenu.Click += new System.EventHandler(this.buttonAddTwoMenu_Click);
-            // 
-            // buttonAddOneMenu
-            // 
-            this.buttonAddOneMenu.Location = new System.Drawing.Point(11, 54);
-            this.buttonAddOneMenu.Name = "buttonAddOneMenu";
-            this.buttonAddOneMenu.Size = new System.Drawing.Size(91, 23);
-            this.buttonAddOneMenu.TabIndex = 26;
-            this.buttonAddOneMenu.Text = "添加一级菜单";
-            this.buttonAddOneMenu.UseVisualStyleBackColor = true;
-            this.buttonAddOneMenu.Click += new System.EventHandler(this.buttonAddOneMenu_Click);
-            // 
-            // textBoxMenuName
-            // 
-            this.textBoxMenuName.Location = new System.Drawing.Point(94, 17);
-            this.textBoxMenuName.Name = "textBoxMenuName";
-            this.textBoxMenuName.Size = new System.Drawing.Size(159, 21);
-            this.textBoxMenuName.TabIndex = 29;
             // 
             // CreateMenu
             // 

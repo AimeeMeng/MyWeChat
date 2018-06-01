@@ -131,12 +131,19 @@ namespace MyWeChatTool.Tools
 
         /// <summary> 获取用户列表信息
         /// YYC 2017-1-10
+        /// MQY 2017-11-01
         /// </summary>
         public static DataTable GetWxUserInfo()
         {
-            string QueryString = "SELECT [subscribe] ,[openid] ,[nickname],[city] ,[province] ,[country] ,[headimgurl] " +
-              " ,b.[GroupName]  FROM [WeChatDB].[dbo].[T_WX_UserWeChatInfo] a, [WeChatDB].[dbo].[T_WX_GroupBaseInfo] b  " +
-              "  where a.groupid = b.[GroupID] and subscribe = 1  order by openid";
+            //string QueryString = "SELECT [subscribe] ,[openid] ,[nickname],[city] ,[province] ,[country] ,[headimgurl] " +
+            //  " ,b.[GroupName]  FROM [WeChatDB].[dbo].[T_WX_UserWeChatInfo] a, [WeChatDB].[dbo].[T_WX_GroupBaseInfo] b  " +
+            //  "  where a.groupid = b.[GroupID] and subscribe = 1  order by openid";
+            string QueryString = "SELECT [subscribe] ,[openid] ,[nickname],[city] ,[province] ,[country] ,[headimgurl] ,b.[GroupName]," +
+"  (select stuff((select ',' + TagName from(SELECT uti.[openid], tbi.TagID, tbi.TagName " +
+"  FROM[WeChatDB].[dbo].[T_WX_UserTagInfo] uti, [WeChatDB].[dbo].[T_WX_TagBaseInfo] tbi " +
+"  where uti.tagid = tbi.TagID) as c where c.openid = a.openid for xml path('')),1,1,'')) as TagName " +
+"  FROM[WeChatDB].[dbo].[T_WX_UserWeChatInfo] a, [WeChatDB].[dbo].[T_WX_GroupBaseInfo] b " +
+"  where a.groupid = b.[GroupID] and subscribe = 1  order by openid";
             DataTable dt;
             try
             {
@@ -157,6 +164,108 @@ namespace MyWeChatTool.Tools
                     + "'  where [openid]= '" + Openid + "'";
                 if (SqlHelper.ExecuteNonQuery(SqlHelper.connstring, CommandType.Text, deletestring) == 0) { return "修改失败！"; }
                 else { return "修改成功！"; }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        /// <summary> 新建标签时插入标签信息
+        /// MQY 2017-10-31
+        /// </summary>
+        public static string InsertTagInfo(string TagID, string TagName)
+        {
+            try
+            {
+                string Insertstring = "INSERT INTO [WeChatDB].[dbo].[T_WX_TagBaseInfo] ([TagID], [TagName]) values ('" + TagID
+                    + "','" + TagName + "')";
+                if (SqlHelper.ExecuteNonQuery(SqlHelper.connstring, CommandType.Text, Insertstring) == 0) { return "数据添加失败！"; }
+                else { return "数据已成功添加！"; }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        /// <summary> 删除标签信息
+        /// MQY 2017-10-31
+        /// </summary>
+        public static string DeleteTagInfo(string TagID)
+        {
+            if (TagID == "0" || TagID == "1" || TagID == "2")
+            {
+                return "无法删除默认分组";
+            }
+            try
+            {
+                string deletestring = "delete from [WeChatDB].[dbo].[T_WX_TagBaseInfo] where [TagID]= '" + TagID + "'";
+                if (SqlHelper.ExecuteNonQuery(SqlHelper.connstring, CommandType.Text, deletestring) == 0) { return "数据删除失败！"; }
+                else { return "数据删除成功！"; }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        /// <summary> 修改标签名称
+        /// MQY 2017-10-31
+        /// </summary>
+        public static string UpdateTagInfo(string TagID, string TagName)
+        {
+            if (TagID == "0" || TagID == "1" || TagID == "2")
+            {
+                return "无法修改默认分组";
+            }
+            try
+            {
+                string deletestring = "UPDATE  [WeChatDB].[dbo].[T_WX_TagBaseInfo] set TagName ='" + TagName
+                    + "'  where [TagID]= '" + TagID + "'";
+                if (SqlHelper.ExecuteNonQuery(SqlHelper.connstring, CommandType.Text, deletestring) == 0) { return "修改失败！"; }
+                else { return "修改成功！"; }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        /// <summary>
+        /// 给用户打标签
+        /// </summary>
+        /// <param name="Openid"></param>
+        /// <param name="GroupID"></param>
+        /// <returns></returns>
+        public static string AddUserTag(string Openid, string TagID)
+        {
+            try
+            {
+                string deletestring = "insert into  [WeChatDB].[dbo].[T_WX_UserTagInfo] ([openid],[tagid]) values ('" + Openid
+                    + "','" + TagID + "')";
+                if (SqlHelper.ExecuteNonQuery(SqlHelper.connstring, CommandType.Text, deletestring) == 0) { return "标记失败！"; }
+                else { return "标记成功！"; }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+        /// <summary>
+        /// 删除数据库中用户与标签对应关系
+        /// </summary>
+        /// <param name="Openid"></param>
+        /// <param name="TagID"></param>
+        /// <returns></returns>
+        public static string DelUserTag(string Openid, string TagID)
+        {
+            try
+            {
+                string deletestring = "delete from [WeChatDB].[dbo].[T_WX_UserTagInfo] where [openid]='" + Openid
+                    + "' and [tagid]='" + TagID + "'";
+                if (SqlHelper.ExecuteNonQuery(SqlHelper.connstring, CommandType.Text, deletestring) == 0) { return "标记失败！"; }
+                else { return "标记成功！"; }
             }
             catch (Exception ex)
             {

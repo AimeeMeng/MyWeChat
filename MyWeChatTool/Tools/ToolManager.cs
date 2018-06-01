@@ -8,6 +8,7 @@ namespace MyWeChatTool.Tools
 {
     public class ToolManager
     {
+        #region 菜单
         /// <summary>
         /// 获取菜单
         /// </summary>
@@ -58,7 +59,9 @@ namespace MyWeChatTool.Tools
             string menuResult = HttpUtility.SendHttpRequest(url, menuid);
             return menuResult;
         }
+        #endregion
 
+        #region 旧的分组方法
         /// <summary>
         /// 获取分组
         /// </summary>
@@ -115,6 +118,120 @@ namespace MyWeChatTool.Tools
             }
             return GroupResult + result;
         }
+        /// <summary>
+        /// 移动用户分组
+        /// </summary>
+        public static string MoveUserGroup(string json, string openid, string groupid)
+        {
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/groups/members/update?access_token={0}", AccessToken.MyAccessToken);
+            string MoveResult = HttpUtility.SendHttpRequest(url, json);
+            string result = "";
+            if (MoveResult.IndexOf("ok") > -1)
+            {
+                result = CommonDataManager.UpdateUserGroup(openid, groupid);
+            }
+            return MoveResult + result;
+        }
+
+
+        /// <summary>
+        /// 批量移动用户分组
+        /// </summary>
+        public static string MoveUserGroup(List<string> openid_list, string groupid)
+        {
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/groups/members/batchupdate?access_token={0}", AccessToken.MyAccessToken);
+            MoveGroupList MoveGroupList = new MoveGroupList();
+            MoveGroupList.openid_list = openid_list.ToArray();
+            MoveGroupList.to_groupid = groupid;
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(MoveGroupList);
+            string MoveResult = HttpUtility.SendHttpRequest(url, json);
+            string result = "";
+            if (MoveResult.IndexOf("ok") > -1)
+            {
+                for (int i = 0; i < openid_list.Count; i++)
+                {
+                    CommonDataManager.UpdateUserGroup(openid_list[i], groupid);
+                }
+            }
+            return MoveResult + result;
+        }
+
+
+        #endregion
+
+        #region 标签
+        /// <summary>
+        /// 获取标签
+        /// </summary>
+        public static WeTag GetTag()
+        {
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/get?access_token={0}", AccessToken.MyAccessToken);
+            string jsonstring = HttpUtility.GetData(url);
+            WeTag WeTag = Newtonsoft.Json.JsonConvert.DeserializeObject<WeTag>(jsonstring);
+            return WeTag;
+        }
+        /// <summary>
+        /// 创建标签
+        /// </summary>
+        public static string CreateTag(string tagname)
+        {
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/create?access_token={0}", AccessToken.MyAccessToken);
+            string TagResult = HttpUtility.SendHttpRequest(url, tagname);
+            string result = "";
+            if (TagResult.IndexOf("errcode") == -1)
+            {
+                Tag Tag = Newtonsoft.Json.JsonConvert.DeserializeObject<Tag>(TagResult);
+                result = CommonDataManager.InsertTagInfo(Tag.tag.id, Tag.tag.name);
+            }
+            return TagResult + result;
+        }
+        /// <summary>
+        /// 删除标签
+        /// </summary>
+        public static string DeleteTag(string tag, string tagid)
+        {
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/delete?access_token={0}", AccessToken.MyAccessToken);
+            string GroupResult = HttpUtility.SendHttpRequest(url, tag);
+            string result = "";
+            if (GroupResult.IndexOf("ok") > -1)
+            {
+                result = CommonDataManager.DeleteTagInfo(tagid);
+            }
+            return GroupResult + result;
+        }
+        /// <summary>
+        /// 修改标签名
+        /// </summary>
+        public static string EditTag(string tag, string tagid, string tagname)
+        {
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/update?access_token={0}", AccessToken.MyAccessToken);
+            string GroupResult = HttpUtility.SendHttpRequest(url, tag);
+            string result = "";
+            if (GroupResult.IndexOf("ok") > -1)
+            {
+                result = CommonDataManager.UpdateTagInfo(tagid, tagname);
+            }
+            return GroupResult + result;
+        }
+
+        /// <summary>
+        /// 获取标签下粉丝列表
+        /// </summary>
+        /// <param name="Tagid"></param>
+        /// <param name="next_openid"></param>
+        public static UserListModel GetUserOfTag(string tag)
+        {
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/user/tag/get?access_token={0}",AccessToken.MyAccessToken);
+            string UserResult = HttpUtility.SendHttpRequest(url, tag);
+            UserListModel UserListModel = Newtonsoft.Json.JsonConvert.DeserializeObject<UserListModel>(UserResult);
+            if (UserListModel.count > 0)
+            {
+                Array.Sort(UserListModel.data.openid);
+            }
+            return UserListModel;
+        }
+
+        #endregion
 
         /// <summary>
         /// 获取用户信息
@@ -149,41 +266,74 @@ namespace MyWeChatTool.Tools
             return UserListModel;
         }
 
-        /// <summary>
-        /// 移动用户分组
-        /// </summary>
-        public static string MoveUserGroup(string json, string openid, string groupid)
-        {
-            string url = string.Format("https://api.weixin.qq.com/cgi-bin/groups/members/update?access_token={0}", AccessToken.MyAccessToken);
-            string MoveResult = HttpUtility.SendHttpRequest(url, json);
-            string result = "";
-            if (MoveResult.IndexOf("ok") > -1)
-            {
-                result = CommonDataManager.UpdateUserGroup(openid, groupid);
-            }
-            return MoveResult + result;
-        }
+     
 
         /// <summary>
-        /// 批量移动用户分组
+        /// 批量为用户打标签
         /// </summary>
-        public static string MoveUserGroup(List<string> openid_list, string groupid)
+        /// <param name="openid_list"></param>
+        /// <param name="tagid"></param>
+        /// <returns></returns>
+        public static string AddUserTag(List<string> openid_list, string tagid)
         {
-            string url = string.Format("https://api.weixin.qq.com/cgi-bin/groups/members/batchupdate?access_token={0}", AccessToken.MyAccessToken);
-            MoveGroupList MoveGroupList = new MoveGroupList();
-            MoveGroupList.openid_list = openid_list.ToArray();
-            MoveGroupList.to_groupid = groupid;
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(MoveGroupList);
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token={0}", AccessToken.MyAccessToken);
+            MoveTagList MoveTagList = new MoveTagList();
+            MoveTagList.openid_list = openid_list.ToArray();
+            MoveTagList.tagid = tagid;
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(MoveTagList);
             string MoveResult = HttpUtility.SendHttpRequest(url, json);
             string result = "";
             if (MoveResult.IndexOf("ok") > -1)
             {
                 for (int i = 0; i < openid_list.Count; i++)
                 {
-                    CommonDataManager.UpdateUserGroup(openid_list[i], groupid);
+                    CommonDataManager.AddUserTag(openid_list[i], tagid);
                 }
             }
             return MoveResult + result;
+        }
+
+        /// <summary>
+        /// 批量删除用户标签
+        /// </summary>
+        /// <param name="openid_list"></param>
+        /// <param name="tagid"></param>
+        /// <returns></returns>
+        public static string DelUserTag(List<string> openid_list, string tagid)
+        {
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token={0}", AccessToken.MyAccessToken);
+            MoveTagList MoveTagList = new MoveTagList();
+            MoveTagList.openid_list = openid_list.ToArray();
+            MoveTagList.tagid = tagid;
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(MoveTagList);
+            string MoveResult = HttpUtility.SendHttpRequest(url, json);
+            string result = "";
+            if (MoveResult.IndexOf("ok") > -1)
+            {
+                for (int i = 0; i < openid_list.Count; i++)
+                {
+                    CommonDataManager.DelUserTag(openid_list[i], tagid);
+                }
+            }
+            return MoveResult + result;
+        }
+
+        /// <summary>
+        /// 获取用户身上标签
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <returns></returns>
+        public static TagList GetUserTag( string openid)
+        {
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/getidlist?access_token={0}", AccessToken.MyAccessToken);
+            string opid="{\"openid\":\"" + openid+"\"}";
+            string Result = HttpUtility.SendHttpRequest(url, opid);
+            TagList TagListModel = null;
+            if (Result.IndexOf("tagid_list") > -1)
+            {
+                TagListModel = Newtonsoft.Json.JsonConvert.DeserializeObject<TagList>(Result);
+            }
+            return TagListModel;
         }
     }
 }

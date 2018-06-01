@@ -1,0 +1,15 @@
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\bin\Debug\MyWeChatTool.exe.config
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.exe
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.pdb
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\ConfigurationTool0.csprojResolveAssemblyReference.cache
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.CreateMenu.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.CreateMenuNew.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.CreateTagsNew.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.MenuForm.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.Properties.Resources.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.TagForm.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.Main.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\MyWeChatTool.UserForm.resources
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\obj\Debug\ConfigurationTool0.csproj.GenerateResource.Cache
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\bin\Debug\MyWeChatTool.exe
+E:\VS2015\MyWeChat_MVC\MyWeChatTool\bin\Debug\MyWeChatTool.pdb
